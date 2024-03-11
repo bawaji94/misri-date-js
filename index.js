@@ -100,7 +100,7 @@ class MisriDate {
         }
         else if (args.every(arg => !arg)) {
             //When no parameters are passed
-            const misriDate = this.fromGregorian(gregorianDate);
+            const misriDate = MisriDate.fromGregorian(new Date());
             this.date = misriDate.date;
             this.month = misriDate.month;
             this.year = misriDate.year;
