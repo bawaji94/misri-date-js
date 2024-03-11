@@ -1,2 +1,2 @@
 const MisriDate = require('./src/MisriDate');
-module.export = MisriDate;
+module.exports = MisriDate;

@@ -1,4 +1,5 @@
-const { DAYS_IN_30_YEARS, DAYS_IN_YEAR } = require('./src/constants')
+const { DAYS_IN_30_YEARS, DAYS_IN_YEAR } = require('./constants');
+const MisriDate = require('..');
 
 // return Astronomical Julian Date corresponding to the specified Gregorian Date object
 function gregorianToAJD(date) {
@@ -53,9 +54,9 @@ function misriDateToAjd(misriDate) {
 
 // return Misri Date object corresponding to specified Astronomical Julian Date
 function misriDateFromAjd(ajd) {
+    let left = Math.floor(ajd - 1948083.5);
     const y30 = Math.floor(left / 10631.0);
     let i = 0;
-    let left = Math.floor(ajd - 1948083.5);
 
     left -= y30 * 10631;
     while (left > DAYS_IN_30_YEARS[i]) {
@@ -73,10 +74,10 @@ function misriDateFromAjd(ajd) {
     const month = Math.round(i);
     const date = (i > 0) ? Math.round(left - DAYS_IN_YEAR[i - 1]) : Math.round(left);
 
-    return new MisriDate(date, month, year);
+    return [year, month + 1, date];
 }
 
-module.export = {
+module.exports = {
     gregorianToAJD,
     ajdToGregorian,
     misriDateToAjd,
