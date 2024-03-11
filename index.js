@@ -106,7 +106,7 @@ class MisriDate {
             this.year = misriDate.year;
         }
         else {
-            throw new Error("Either don't any paramters to get current date or pass date, month and year")
+            throw new Error("Pass valid arguments")
         }
     }
 
