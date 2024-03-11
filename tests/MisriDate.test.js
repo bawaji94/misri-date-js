@@ -106,10 +106,35 @@ describe('Misri Date', () => {
         });
 
         it('should not equate eid-ul-fitr 1445H with nawu waras 1445H', () => {
-            const ashura1445H = new MisriDate(1445, 1, 1);
-            const taasu1444H = new MisriDate(1444, 10, 1);
+            const nawuWaras1445H = new MisriDate(1445, 1, 1);
+            const eidUlFitr1445H = new MisriDate(1444, 10, 1);
 
-            expect(ashura1445H.equals(taasu1444H)).toEqual(false);
+            expect(nawuWaras1445H.equals(eidUlFitr1445H)).toEqual(false);
+        });
+    });
+
+    describe('Compare', () => {
+        it('should not compare misri date with anything else', () => {
+            const misriDate = new MisriDate(1445, 1, 1);
+            expect(() => misriDate.compare("4")).toThrow("Misri Date must be compared with Misri Date")
+        });
+
+        it('should equate misri date with another object of same value', () => {
+            const misriDate = new MisriDate(1445, 1, 1);
+            const anotherMisriDate = new MisriDate(1445, 1, 1);
+            expect(misriDate.compare(anotherMisriDate)).toEqual(0)
+        });
+
+        it('should return -1 when earlier misri date is compared with latest date', () => {
+            const earlierMisriDate = new MisriDate(1445, 1, 1);
+            const laterMisriDate = new MisriDate(1445, 9, 12);
+            expect(earlierMisriDate.compare(laterMisriDate)).toEqual(-1)
+        });
+
+        it('should return 1 when later misri date is compared with earlier date', () => {
+            const earlierMisriDate = new MisriDate(1445, 1, 1);
+            const laterMisriDate = new MisriDate(1445, 9, 12);
+            expect(laterMisriDate.compare(earlierMisriDate)).toEqual(1)
         });
     });
 });
