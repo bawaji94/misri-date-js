@@ -1,4 +1,4 @@
-const { MONTHS, QARN_SAGIR} = require('./constants');
+const { MONTHS, QARN_SAGIR, DAYS_IN_YEAR } = require('./constants');
 const {
     gregorianToAJD,
     ajdToGregorian,
@@ -47,7 +47,7 @@ class MisriDate {
             return true;
         }
 
-        if (!(o instanceof MisriDate)) {
+        if (!(other instanceof MisriDate)) {
             return false;
         }
 
@@ -73,7 +73,7 @@ class MisriDate {
     }
 
     get dayOfYear() {
-        return (this.month === 0) ? this.day : (DAYS_IN_YEAR[this.month - 1] + this.day);
+        return (this.month === 1) ? this.date : (DAYS_IN_YEAR[this.month - 2] + this.date);
     }
 
     get gregorianDate() {

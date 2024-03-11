@@ -1,5 +1,4 @@
 const { DAYS_IN_30_YEARS, DAYS_IN_YEAR } = require('./constants');
-const MisriDate = require('..');
 
 // return Astronomical Julian Date corresponding to the specified Gregorian Date object
 function gregorianToAJD(date) {
