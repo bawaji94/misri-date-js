@@ -52,6 +52,36 @@ describe('Misri Date', () => {
             expect(misriDate.year).toEqual(1418);
         });
 
+        it('should create misri date given julian date', () => {
+            const date = new Date(1580, 9, 29);
+
+            const misriDate = MisriDate.fromGregorian(date);
+
+            expect(misriDate.date).toEqual(21);
+            expect(misriDate.month).toEqual(9);
+            expect(misriDate.year).toEqual(988);
+        });
+
+        it('should create misri date given gregorian date December 31 621', () => {
+            const date = new Date(621, 11, 31);
+
+            const misriDate = MisriDate.fromGregorian(date);
+
+            expect(misriDate.date).toEqual(11);
+            expect(misriDate.month).toEqual(6);
+            expect(misriDate.year).toEqual(0);
+        });
+
+        it('should create misri date given gregorian date August 04 621', () => {
+            const date = new Date(621, 7, 4);
+
+            const misriDate = MisriDate.fromGregorian(date);
+
+            expect(misriDate.date).toEqual(10);
+            expect(misriDate.month).toEqual(1);
+            expect(misriDate.year).toEqual(0);
+        });
+
         it('should not create misri date when date is not given', () => {
             expect(() => MisriDate.fromGregorian("1234")).toThrow("parameter should be of type Date");
         });
@@ -68,6 +98,18 @@ describe('Misri Date', () => {
             const misriDate = new MisriDate(1445, 1, 10);
 
             expect(misriDate.gregorianDate).toEqual(new Date(2023, 6, 27));
+        });
+
+        it('should create Date from ashura 1440H', () => {
+            const misriDate = new MisriDate(1440, 1, 10);
+
+            expect(misriDate.gregorianDate).toEqual(new Date(2018, 8, 20));
+        });
+
+        it('should create Date from ashura 988H', () => {
+            const misriDate = new MisriDate(988, 1, 10);
+
+            expect(misriDate.gregorianDate).toEqual(new Date(1580, 1, 25));
         });
     });
 

@@ -9,8 +9,7 @@ const {
 class MisriDate {
     constructor(year, month, date) {
         const args = [year, month, date]
-        const areAllArgsPositiveIntegers = args.every(arg => arg && Number.isInteger(arg) && arg > 0)
-        if (areAllArgsPositiveIntegers && MisriDate.isValid(year, month, date)) {
+        if (MisriDate.isValid(year, month, date)) {
             //When all three parameters are passed
             this.date = date;
             this.month = month;
@@ -65,11 +64,13 @@ class MisriDate {
     }
 
     static isValid(year, month, date) {
+        const areMonthAndDatePositiveIntegers = [month, date].every(arg => arg && Number.isInteger(arg) && arg > 0);
+        const isYearAnInteger = Number.isInteger(year)
         const isMonthInRange = month <= 12;
         const isKabisaYear = QARN_SAGIR.some(qs => qs === year % 30);
         const dateUpperLimit = (month % 2 === 1) || (isKabisaYear && month === 12) ? 30 : 29;
         const isDateInRange = date < dateUpperLimit;
-        return isMonthInRange && isDateInRange  
+        return areMonthAndDatePositiveIntegers && isYearAnInteger && isMonthInRange && isDateInRange
     }
 
     get dayOfYear() {

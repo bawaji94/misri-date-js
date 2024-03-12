@@ -45,7 +45,7 @@ function ajdToGregorian(ajd) {
 function misriDateToAjd(misriDate) {
     const y30 = Math.floor(misriDate.year / 30.0);
     let ajd = 1948083.5 + y30 * 10631 + misriDate.dayOfYear;
-    if (this.year % 30 !== 0) {
+    if (misriDate.year % 30 !== 0) {
         ajd += DAYS_IN_30_YEARS[misriDate.year - y30 * 30 - 1];
     }
     return ajd;
